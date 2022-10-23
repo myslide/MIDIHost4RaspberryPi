@@ -25,6 +25,7 @@ i.e. this works for Raspberry Pi Zero WH:
 https://youtu.be/RbdNczYovHQ
 #### The Hardware
 You can realize a MIDI Interface in many variants. I used the TTL Latch 74LS125, as one gate is required for the ONOffShim too. "MIDISchaltplan-Project.pdf" shows the schematic. 
+The schema and PCB is designed in DesignSpark. I could not find a way to publish it without explicit part library path informations. So only the pdf output is published here.
 
 Feel free to realize and customize all the electronic stuff to your needs and skills!
 
@@ -43,13 +44,13 @@ Edit the /boot/config.txt and add:
 - make sure, the alsa-utils are instelled:
 sudo apt-get install alsa-utils
 
-### install the ttymidi from github:
+#### install the ttymidi from github:
 git clone https://github.com/cjbarnes18/ttymidi.git
 
 #set up the MIDI baudrate:
 ttymidi -s /dev/ttyAMA0 -b 38400 &
 
-### show the available alsa devices:
+#### show the available alsa devices:
 { aconnect -iol }
 
 ->result:
@@ -59,17 +60,20 @@ client 128: 'ttymidi'...
 	1 'MIDI in  '
 
 ex: connect 128(transmitter) out to 20 (an available MIDI USB device as receiver)
-128 represents the midiuart, 20 is the port of my MIDI USB converter  
+128 represents the midiuart, 20 is the port of my MIDI USB converter:
+
 aconnect 128:0 20:0
 
-oder durchleiten von midi uart in auf midiuart out
+or connect midi uart in to midiuart out:
+
 aconnect 128:0 128:1
 
-### how to play a midi file(Taken from http://siliconstuff.blogspot.com/2012/08/ttymidi-on-raspberry-pi.html):
+#### how to play a midi file
+(Taken from http://siliconstuff.blogspot.com/2012/08/ttymidi-on-raspberry-pi.html):
 
 aplaymidi -p 128:1 your_midid_file.mid will send a MIDI file to the MIDI out.
 
-### create a script "startmidi.sh" in order to auto startup:
+#### create a script "startmidi.sh" in order to auto startup:
 
 	#!/bin/sh
 	#cleanup for sure
@@ -106,6 +110,4 @@ Keep in mind, these script will be called by root at the startup time. So make s
 
 Issue:The USB MIDI device will be connected if it is present at startup time.
 TODO: create a service to indicate the insertion of an appropriate USB device and connect it to the ttymidi port.
-
-## The Hardware Schematic and PCB
-The schema and PCB is designed in DesignSpark. Could not find a way to publish it without explicit part library path informations. So only the pdf output is published here.
+TODO: Control the MIDIHost4RaspberryPi remote via Web interface.
