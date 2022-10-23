@@ -53,7 +53,7 @@ Edit the /boot/config.txt and add:
 > ttymidi -s /dev/ttyAMA0 -b 38400 &
 
 - show the available alsa devices:
-> { aconnect -iol }
+>  aconnect -iol
 
 ->result:
 ...
