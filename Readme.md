@@ -1,10 +1,17 @@
-#About the MIDIHost4RaspberryPi Project
-As I added a modern Keyboard to my Synthesizers from the 90's, I realized the Gap between the MIDI interfaces: The standard MIDI interface contains a In and Out and sometimes a Through 5 pin DIN socket. The modern equipment contains a USB Connector or is "wired" by Bluetooth or (W)LAN. How to bring it together? 
-A RaspberryPi is popular and is used already in these job. Unfortually, the RaspianOS - as all LINUX derivates, does not like a hard power off. The command "shutdown -h now" ensures, that the used storage devices will not end in memory corruption. 
-I know 2 solutions: 1. Shut down the device in the correct manner->type in the shutdown command or 
-2. set up the RaspbianOS to run in RAM only.
-This project uses version (1). Software updates are easy to manage via ssh. The MIDIHost4RaspberryPi should be able to work in headless mode. The shutdown is controlled by the clean-shutdown software in addition to the appropriate hardware. 
-Both functions, power and Standard MIDI interface are put together in one Schema with the electronic parts, that I had available. The MIDIHost4RaspberryPi had to fit into a case of an cheap USB Hub. So I used a RaspberryPi Zwero W with extra WLAN antenna connection and an extra small PCB for the standad MIDI Interface and the power on/off switch facility.
+# About the MIDIHost4RaspberryPi Project
+As I added a modern Keyboard to my Synthesizers from the 90's, I realized the gap between the MIDI interfaces: The standard MIDI interface contains a In and Out,sometimes a Throu 5 pin DIN socket. The modern equipment contains a USB Connector or it is "wired" by Bluetooth or (W)LAN. 
+
+How to bring it together? 
+
+A RaspberryPi is popular and is used allready in these task. Unfortunally, the RaspianOS - as all LINUX derivates- does not like a hard power off. The command "shutdown -h now" ensures, that the used storage devices will not end up in a memory corruption. 
+
+I know 2 solutions:
+1. Shut down the device in the correct manner->type in the shutdown command or 
+2. set up the RaspbianOS to run in RAM as a mirror of the SDCard image.
+
+This project uses version (1). Software updates are easy to manage and persistent via ssh. The MIDIHost4RaspberryPi should be able to work in headless mode. The shutdown is controlled by the clean-shutdown software in addition to the appropriate hardware. 
+
+Both functions, power and standard MIDI interface are put together in one schema with some electronic parts, that I had available. The MIDIHost4RaspberryPi had to fit into a case of an cheap USB Hub. So I used a RaspberryPi Zero W with an extra WLAN antenna connection and an extra small PCB for the standad MIDI Interface and the power on/off switch facility.
 
 
 ## The Power facility
