@@ -108,6 +108,7 @@ Keep in mind, these script will be called by root at the startup time. So make s
 	#display log messages:
 	more /var/log/messages
 
-Issue:The USB MIDI device will be connected if it is present at startup time.
-TODO: create a service to indicate the insertion of an appropriate USB device and connect it to the ttymidi port.
-TODO: Control the MIDIHost4RaspberryPi remote via Web interface.
+- Issue: The USB MIDI device will be connected if it is present at startup time.
+
+- TODO: create a service to indicate the insertion of an appropriate USB device and connect it to the ttymidi port.
+- TODO: Control the MIDIHost4RaspberryPi remote via Web interface.
