@@ -1,12 +1,27 @@
+#About the MIDIHost4RaspberryPi Project
+As I added a modern Keyboard to my Synthesizers from the 90's, I realized the Gap between the MIDI interfaces: The standard MIDI interface contains a In and Out and sometimes a Through 5 pin DIN socket. The modern equipment contains a USB Connector or is "wired" by Bluetooth or (W)LAN. How to bring it together? 
+A RaspberryPi is popular and is used already in these job. Unfortually, the RaspianOS - as all LINUX derivates, does not like a hard power off. The command "shutdown -h now" ensures, that the used storage devices will not end in memory corruption. 
+I know 2 solutions: 1. Shut down the device in the correct manner->type in the shutdown command or 
+2. set up the RaspbianOS to run in RAM only.
+This project uses version (1). Software updates are easy to manage via ssh. The MIDIHost4RaspberryPi should be able to work in headless mode. The shutdown is controlled by the clean-shutdown software in addition to the appropriate hardware. 
+Both functions, power and Standard MIDI interface are put together in one Schema with the electronic parts, that I had available. The MIDIHost4RaspberryPi had to fit into a case of an cheap USB Hub. So I used a RaspberryPi Zwero W with extra WLAN antenna connection and an extra small PCB for the standad MIDI Interface and the power on/off switch facility.
+
+
 ## The Power facility
- The hardware is adapted from Pimorony ONOFFShim. Use the software according @https://github.com/pimoroni/clean-shutdown
- I used the available PMOSFET. The power cable should have low resistance to ensure 5 Volts at the PMOS source. 
+ The hardware is adopted from the Pimorony ONOFFShim. Use the software according @https://github.com/pimoroni/clean-shutdown
+ I used the available PMOSFET. The power cable should have low resistance to ensure 5 Volts at the PMOSFET source. 
 
 ## The MIDI facility
 All that is needed for MIDI is a serial signal with the correct baudrate (31250 Bps).
 
 i.e. this works for Raspberry Pi Zero WH:
 https://youtu.be/RbdNczYovHQ
+#### The Hardware
+You can realize a MIDI Interface in many variants. I used the TTL Latch 74LS125, as one gate is required for the ONOffShim too. "MIDISchaltplan-Project.pdf" shows the schematic. 
+
+Feel free to realize and customize all the electronic stuff to your needs and skills!
+
+#### The software configuration
 
 sudo raspi-config
 Interface Options->disable Serial login shell. enable serial Interface. 
