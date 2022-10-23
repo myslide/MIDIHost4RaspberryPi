@@ -1,5 +1,6 @@
+
 # About the MIDIHost4RaspberryPi Project
-As I added a modern Keyboard to my Synthesizers from the 90's, I realized the gap between the MIDI interfaces: The standard MIDI interface contains a In and Out,sometimes a Throu 5 pin DIN socket. The modern equipment contains a USB Connector or it is "wired" by Bluetooth or (W)LAN. 
+As I added a modern Keyboard to my Synthesizers from the 90's, I realized the gap between the MIDI interfaces: The standard MIDI interface contains a In and Out,sometimes a Through port with a 5 pin DIN socket. The modern equipment contains a USB Connector or it is "wired" by Bluetooth or (W)LAN. 
 
 How to bring it together? 
 
@@ -9,17 +10,17 @@ I know 2 solutions:
 1. Shut down the device in the correct manner->type in the shutdown command or 
 2. set up the RaspbianOS to run in RAM as a mirror of the SDCard image.
 
-This project uses version (1). Software updates are easy to manage and persistent via ssh. The MIDIHost4RaspberryPi should be able to work in headless mode. The shutdown is controlled by the clean-shutdown software in addition to the appropriate hardware. 
+This project uses version (1). Software updates are easy to manage via ssh and are persistent. The MIDIHost4RaspberryPi should be able to work in headless mode. The shutdown is controlled by the clean-shutdown software in addition to the appropriate hardware. 
 
-Both functions, power and standard MIDI interface are put together in one schema with some electronic parts, that I had available. The MIDIHost4RaspberryPi had to fit into a case of an cheap USB Hub. So I used a RaspberryPi Zero W with an extra WLAN antenna connection and an extra small PCB for the standad MIDI Interface and the power on/off switch facility.
+Both functions, power and standard MIDI interface are put together in one schematic with some electronic parts, that I had available. The MIDIHost4RaspberryPi had to fit into a case of an cheap USB Hub. So I used a RaspberryPi Zero W with an extra WLAN antenna connection and an extra small PCB for the standad MIDI Interface and the power on/off switch facility.
 
 
 ## The Power facility
- The hardware is adopted from the Pimorony ONOFFShim. Use the software according @https://github.com/pimoroni/clean-shutdown
+ The hardware is adopted from the Pimorony ONOFFShim. Use the software according https://github.com/pimoroni/clean-shutdown
  I used the available PMOSFET. The power cable should have low resistance to ensure 5 Volts at the PMOSFET source. 
 
 ## The MIDI facility
-All that is needed for MIDI is a serial signal with the correct baudrate (31250 Bps).
+Standard MIDI requires is a serial signal with the correct baudrate (31250 Bps).
 
 i.e. this works for Raspberry Pi Zero WH:
 https://youtu.be/RbdNczYovHQ
@@ -41,17 +42,18 @@ Edit the /boot/config.txt and add:
 	dtoverlay=pi3-miniuart-bt
 	dtoverlay=midi-uart0
 
+
 - make sure, the alsa-utils are instelled:
-sudo apt-get install alsa-utils
+> sudo apt-get install alsa-utils
 
-#### install the ttymidi from github:
-git clone https://github.com/cjbarnes18/ttymidi.git
+- install the ttymidi from github:
+> git clone https://github.com/cjbarnes18/ttymidi.git
 
-#set up the MIDI baudrate:
-ttymidi -s /dev/ttyAMA0 -b 38400 &
+- set up the MIDI baudrate:
+> ttymidi -s /dev/ttyAMA0 -b 38400 &
 
-#### show the available alsa devices:
-{ aconnect -iol }
+- show the available alsa devices:
+> { aconnect -iol }
 
 ->result:
 ...
@@ -71,7 +73,9 @@ aconnect 128:0 128:1
 #### how to play a midi file
 (Taken from http://siliconstuff.blogspot.com/2012/08/ttymidi-on-raspberry-pi.html):
 
-aplaymidi -p 128:1 your_midid_file.mid will send a MIDI file to the MIDI out.
+	aplaymidi -p 128:1 your_midid_file.mid 
+
+will send a MIDI file to the MIDI out.
 
 #### create a script "startmidi.sh" in order to auto startup:
 
