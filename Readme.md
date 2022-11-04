@@ -111,8 +111,33 @@ Keep in mind, these script will be called by root at the startup time. So make s
 
 	#display log messages:
 	more /var/log/messages
+### Auto connect USB MIDI Device
+- Issue: The USB MIDI device will be connected if it is present at startup time only.
+Solution: create a udev rule for the device in question and run a appropriate script to establish the USB to alsa connection. 
+You find my individual example in /etc/udev/rules.d/50-midiconnect.rules. See https://www.reactivated.net/writing_udev_rules.html .
 
-- Issue: The USB MIDI device will be connected if it is present at startup time.
+- In short:
+open a terminal and call:
 
-- TODO: create a service to indicate the insertion of an appropriate USB device and connect it to the ttymidi port.
+    udevadm monitor
+	
+Insert your MIDI USB device. You will get a long printout. But copy the path of the first line only and insert it into the following command like this:
+
+    udevadm info --attribute-walk --path=/devices/platform/soc/20980000.usb/usb1/1-1/1-1.4
+	
+You will get a long printout. From the first section pick up some unique keys and create a new udev rule like:
+
+    sudo nano /etc/udev/rules.d/50-midiconnect.rules
+    
+Copy&paste your individual keys:
+
+   SUBSYSTEM=="usb", DRIVER=="usb" ,ATTR{product}=="USB Audio Device", RUN+="/home/pi/startmidi.sh"
+
+The RUN+= will establish the new MIDI Connection according startmidi.sh .
+
+Reboot to make sure that changes take effect.
+
+Now you will have a USB to Standard MIDI connection after 1..2sec after plugged in your USB Audio device. 
+
 - TODO: Control the MIDIHost4RaspberryPi remote via Web interface.
+- TODO:make the device connection setup process more comfordable. 
