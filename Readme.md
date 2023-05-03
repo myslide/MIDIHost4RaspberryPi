@@ -1,4 +1,4 @@
-
+![](https://img.shields.io/github/stars/myslide/MIDIHost4RaspberryPi?style=social) ![](https://img.shields.io/github/search/myslide/MIDIHost4RaspberryPi/midi)
 # About the MIDIHost4RaspberryPi Project
 As I added a modern Keyboard to my Synthesizers from the 90's, I realized the gap between the MIDI interfaces: The standard MIDI interface contains a In and Out,sometimes a Through port with a 5 pin DIN socket. The modern equipment contains a USB Connector or it is "wired" by Bluetooth or (W)LAN. 
 
