@@ -139,5 +139,5 @@ Reboot to make sure that changes take effect.
 
 Now you will have a USB to Standard MIDI connection after 1..2sec after plugged in your USB Audio device. 
 
-- TODO: Control the MIDIHost4RaspberryPi remote via Web interface.
+- TODO: Control the MIDIHost4RaspberryPi remote via Web interface like https://neuma.studio/raspberry-pi-as-usb-bluetooth-midi-host
 - TODO:make the device connection setup process more comfordable. 
